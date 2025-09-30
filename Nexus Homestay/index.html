@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus Beach Homestay | Kaup, Udupi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            // NEW COASTAL PALETTE: Navy, Aqua, and Sand
+            colors: {
+              "nexus-primary": "#1B4965", // Deep Navy Blue
+              "nexus-secondary": "#6AD4DD", // Tropical Aqua Accent
+              "nexus-bg-light": "#F8F8F4", // Soft Sand / Off-White Background
+              "nexus-bg-dark": "#395B64", // Muted Blue/Gray Background
+              "nexus-text-dark": "#1B4965", // Primary used for most dark text
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Custom styles for smooth scrolling and utility */
+      html {
+        scroll-behavior: smooth;
+      }
+      .section-padding {
+        padding: 4rem 1rem;
+      }
+      @media (min-width: 768px) {
+        .section-padding {
+          padding: 6rem 4rem;
+        }
+      }
+
+      /* Hero background styling */
+      #home {
+        /* USING USER-PROVIDED IMAGE: Homestay.jpg for the main banner */
+        background-image: url("Homestay.jpg");
+        background-size: cover;
+        background-position: center 40%;
+      }
+
+      /* BACKGROUND FOR LIGHT SECTIONS - Now clean solid color */
+      .bg-textured-sand {
+        background-color: #f8f8f4;
+        /* The subtle placeholder background image has been removed for a cleaner look. */
+      }
+    </style>
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body class="font-sans text-nexus-text-dark bg-white">
+    <script>
+      // Use a mock phone number and a friendly pre-filled message for WhatsApp
+      const WHATSAPP_NUMBER = "918296986379"; // Placeholder Number
+      const WHATSAPP_MESSAGE = encodeURIComponent(
+        "Hello, I would like to enquire about booking a stay at Nexus Beach Homestay. I am interested in [Room Type] for [Number] guests from [Start Date] to [End Date]. Please provide availability and pricing."
+      );
+      const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`;
+
+      // Function to open WhatsApp link
+      function openWhatsAppBooking() {
+        window.open(WHATSAPP_LINK, "_blank");
+      }
+
+      // Toggles mobile menu visibility
+      function toggleMenu() {
+        const menu = document.getElementById("mobile-menu");
+        menu.classList.toggle("hidden");
+      }
+    </script>
+
+    <header class="sticky top-0 z-50 bg-white shadow-lg">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <a
+            href="#home"
+            class="text-3xl font-extrabold text-nexus-primary tracking-tight"
+          >
+            <span class="text-nexus-secondary">Nexus</span> Homestay
+          </a>
+
+          <nav class="hidden md:flex space-x-8">
+            <a
+              href="#about"
+              class="text-nexus-text-dark hover:text-nexus-secondary transition duration-300 font-medium"
+              >About</a
+            >
+            <a
+              href="#rooms"
+              class="text-nexus-text-dark hover:text-nexus-secondary transition duration-300 font-medium"
+              >Rooms</a
+            >
+            <a
+              href="#amenities"
+              class="text-nexus-text-dark hover:text-nexus-secondary transition duration-300 font-medium"
+              >Amenities</a
+            >
+            <a
+              href="#gallery"
+              class="text-nexus-text-dark hover:text-nexus-secondary transition duration-300 font-medium"
+              >Gallery</a
+            >
+            <a
+              href="#location"
+              class="text-nexus-text-dark hover:text-nexus-secondary transition duration-300 font-medium"
+              >Location</a
+            >
+          </nav>
+
+          <button
+            onclick="openWhatsAppBooking()"
+            class="hidden md:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-xl text-nexus-primary bg-nexus-secondary hover:bg-nexus-primary hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+          >
+            <i data-lucide="whatsapp" class="w-5 h-5 mr-2"></i> Book Now
+          </button>
+
+          <button
+            class="md:hidden p-2 rounded-md text-nexus-text-dark hover:bg-nexus-bg-light"
+            onclick="toggleMenu()"
+          >
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+
+      <nav id="mobile-menu" class="md:hidden hidden bg-white shadow-lg pb-4">
+        <a
+          href="#about"
+          onclick="toggleMenu()"
+          class="block px-4 py-2 text-base text-nexus-text-dark hover:bg-nexus-bg-light"
+          >About</a
+        >
+        <a
+          href="#rooms"
+          onclick="toggleMenu()"
+          class="block px-4 py-2 text-base text-nexus-text-dark hover:bg-nexus-bg-light"
+          >Rooms</a
+        >
+        <a
+          href="#amenities"
+          onclick="toggleMenu()"
+          class="block px-4 py-2 text-base text-nexus-text-dark hover:bg-nexus-bg-light"
+          >Amenities</a
+        >
+        <a
+          href="#gallery"
+          onclick="toggleMenu()"
+          class="block px-4 py-2 text-base text-nexus-text-dark hover:bg-nexus-bg-light"
+          >Gallery</a
+        >
+        <a
+          href="#location"
+          onclick="toggleMenu()"
+          class="block px-4 py-2 text-base text-nexus-text-dark hover:bg-nexus-bg-light"
+          >Location</a
+        >
+        <div class="px-4 pt-2">
+          <button
+            onclick="openWhatsAppBooking()"
+            class="w-full flex justify-center items-center px-4 py-2 text-base font-medium rounded-full shadow-lg text-nexus-primary bg-nexus-secondary hover:bg-nexus-primary hover:text-white transition duration-300"
+          >
+            <i data-lucide="whatsapp" class="w-5 h-5 mr-2"></i> Book via
+            WhatsApp
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <section
+      id="home"
+      class="relative h-screen flex items-center justify-center"
+    >
+      <div class="absolute inset-0 bg-nexus-primary opacity-50"></div>
+      <div class="z-10 text-center text-white p-6 md:p-10 max-w-4xl">
+        <p
+          class="text-lg md:text-xl font-semibold mb-3 text-nexus-secondary uppercase tracking-widest"
+        >
+          Experience Coastal Bliss
+        </p>
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+          Nexus Beach Homestay
+        </h1>
+        <p class="text-xl md:text-2xl font-light mb-10">
+          Your tranquil escape right on the shores of Kaup, Udupi.
+        </p>
+        <button
+          onclick="openWhatsAppBooking()"
+          class="inline-flex items-center px-8 py-4 text-xl font-bold rounded-full shadow-2xl text-nexus-primary bg-nexus-secondary hover:bg-white transition duration-500 ease-in-out transform hover:scale-105 border-2 border-nexus-secondary hover:border-white"
+        >
+          <i data-lucide="calendar-check" class="w-6 h-6 mr-3"></i> Reserve Your
+          Stay Today
+        </button>
+      </div>
+    </section>
+
+    <section id="about" class="section-padding bg-textured-sand">
+      <div class="container mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <span
+              class="text-nexus-primary text-sm font-semibold uppercase tracking-widest"
+              >Who We Are</span
+            >
+            <h2 class="text-4xl font-bold mt-2 mb-6">
+              A Homestay with a Soul, Steps from the Ocean
+            </h2>
+            <p class="text-lg text-gray-700 mb-4">
+              Nestled in the quiet coastal village of Polipu, just minutes from
+              the iconic Kaup Lighthouse, Nexus Beach Homestay offers a genuine
+              escape from the hustle. We believe in providing an experience that
+              blends the comfort of home with the serenity of the sea.
+            </p>
+            <p class="text-lg text-gray-700 mb-6">
+              Enjoy private access to the beach, and let the sound of the waves
+              be your background score. Whether it’s a family vacation, a
+              romantic getaway, or a peaceful solo trip, your perfect moment
+              awaits here.
+            </p>
+            <div class="flex items-center space-x-4">
+              <i data-lucide="map-pin" class="w-6 h-6 text-nexus-primary"></i>
+              <p class="text-base font-semibold text-nexus-text-dark">
+                Kaup, Udupi - The best beach experience
+              </p>
+            </div>
+          </div>
+          <div
+            class="rounded-xl shadow-2xl overflow-hidden transform hover:scale-[1.02] transition duration-500"
+          >
+            <img
+              src="Homestay.jpg"
+              alt="Homestay Property View"
+              class="w-full h-auto object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="rooms" class="section-padding">
+      <div class="container mx-auto text-center">
+        <span
+          class="text-nexus-secondary text-sm font-semibold uppercase tracking-widest"
+          >Our Spaces</span
+        >
+        <h2 class="text-4xl font-bold mt-2 mb-12">
+          Flexible Accommodation Options
+        </h2>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div
+            class="bg-white rounded-xl shadow-xl overflow-hidden group hover:shadow-2xl transition duration-300"
+          >
+            <img
+              src="Cottage.jpg"
+              alt="Exclusive Coastal Cottage Exterior"
+              class="w-full h-72 object-cover object-center group-hover:scale-105 transition duration-500"
+              onerror="this.src='https://placehold.co/600x600/1B4965/FFFFFF?text=Image+Error+Cottage'"
+            />
+            <div class="p-8 text-left">
+              <h3 class="text-3xl font-bold mb-2 text-nexus-text-dark">
+                Exclusive Coastal Cottage
+              </h3>
+              <p class="text-nexus-primary font-semibold mb-4">
+                Ideal Capacity: Up to 8 Guests (4 per room)
+              </p>
+              <p class="text-lg text-gray-700 mb-6">
+                A private, detached unit offering maximum tranquility and space,
+                perfect for two families or a large group seeking dedicated
+                privacy. Features a lovely seating area.
+              </p>
+              <ul class="space-y-3 text-base text-gray-600">
+                <li class="flex items-start">
+                  <i
+                    data-lucide="home"
+                    class="w-5 h-5 mr-3 mt-1 text-nexus-secondary"
+                  ></i>
+                  Two Separate Rooms: Each room comfortable for 4 people.
+                </li>
+                <li class="flex items-start">
+                  <i
+                    data-lucide="bath"
+                    class="w-5 h-5 mr-3 mt-1 text-nexus-secondary"
+                  ></i>
+                  Dedicated private bathroom facilities.
+                </li>
+                <li class="flex items-start">
+                  <i
+                    data-lucide="tent"
+                    class="w-5 h-5 mr-3 mt-1 text-nexus-secondary"
+                  ></i>
+                  Outdoor seating area for relaxation.
+                </li>
+              </ul>
+              <button
+                onclick="openWhatsAppBooking()"
+                class="mt-8 w-full bg-nexus-secondary text-nexus-primary font-bold py-3 rounded-full hover:bg-nexus-primary hover:text-white transition duration-300 transform hover:scale-[1.01]"
+              >
+                Enquire about the Cottage
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="bg-white rounded-xl shadow-xl overflow-hidden group hover:shadow-2xl transition duration-300"
+          >
+            <img
+              src="Home view.jpg"
+              alt="Main Homestay Unit Bedroom Interior"
+              class="w-full h-72 object-cover object-center group-hover:scale-105 transition duration-500"
+              onerror="this.src='https://placehold.co/600x600/1B4965/FFFFFF?text=Image+Error+B2'"
+            />
+            <div class="p-8 text-left">
+              <h3 class="text-3xl font-bold mb-2 text-nexus-text-dark">
+                The Main Beach Homestay Unit
+              </h3>
+              <p class="text-nexus-primary font-semibold mb-4">
+                Ideal Capacity: Up to 10 Guests
+              </p>
+              <p class="text-lg text-gray-700 mb-6">
+                The heart of our property, offering essential amenities, a
+                kitchen, and common areas, suitable for large groups or multiple
+                smaller families. This unit is equipped with a dedicated
+                workspace.
+              </p>
+              <ul class="space-y-3 text-base text-gray-600">
+                <li class="flex items-start">
+                  <i
+                    data-lucide="bed"
+                    class="w-5 h-5 mr-3 mt-1 text-nexus-secondary"
+                  ></i>
+                  Two Bedrooms: Includes a sea-view room and a spacious second
+                  room.
+                </li>
+                <li class="flex items-start">
+                  <i
+                    data-lucide="bath"
+                    class="w-5 h-5 mr-3 mt-1 text-nexus-secondary"
+                  ></i>
+                  Attached and one separate common washroom.
+                </li>
+                <li class="flex items-start">
+                  <i
+                    data-lucide="kitchen-knife"
+                    class="w-5 h-5 mr-3 mt-1 text-nexus-secondary"
+                  ></i>
+                  Kitchen Access and cooking facilities.
+                </li>
+                <li class="flex items-start">
+                  <i
+                    data-lucide="monitor-dot"
+                    class="w-5 h-5 mr-3 mt-1 text-nexus-secondary"
+                  ></i>
+                  Dedicated Workspace available for remote needs.
+                </li>
+              </ul>
+              <button
+                onclick="openWhatsAppBooking()"
+                class="mt-8 w-full bg-nexus-secondary text-nexus-primary font-bold py-3 rounded-full hover:bg-nexus-primary hover:text-white transition duration-300 transform hover:scale-[1.01]"
+              >
+                Book the Main Unit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="amenities" class="section-padding bg-textured-sand">
+      <div class="container mx-auto text-center">
+        <span
+          class="text-nexus-primary text-sm font-semibold uppercase tracking-widest"
+          >Why Choose Us</span
+        >
+        <h2 class="text-4xl font-bold mt-2 mb-12">
+          Exceptional Features for a Memorable Stay
+        </h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div
+            class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1"
+          >
+            <i
+              data-lucide="cooking-pot"
+              class="w-10 h-10 mx-auto text-nexus-primary mb-3"
+            ></i>
+            <h4 class="text-lg font-semibold mb-1">Kitchen Access</h4>
+            <p class="text-sm text-gray-500">
+              Access to a private space for preparing meals.
+            </p>
+          </div>
+
+          <div
+            class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1"
+          >
+            <i
+              data-lucide="coffee"
+              class="w-10 h-10 mx-auto text-nexus-primary mb-3"
+            ></i>
+            <h4 class="text-lg font-semibold mb-1">Breakfast Provided</h4>
+            <p class="text-sm text-gray-500">
+              Complimentary home-cooked breakfast service available.
+            </p>
+          </div>
+
+          <div
+            class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1"
+          >
+            <i
+              data-lucide="wifi"
+              class="w-10 h-10 mx-auto text-nexus-primary mb-3"
+            ></i>
+            <h4 class="text-lg font-semibold mb-1">High-Speed Wi-Fi</h4>
+            <p class="text-sm text-gray-500">
+              Stay connected with fast, complimentary internet access.
+            </p>
+          </div>
+
+          <div
+            class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1"
+          >
+            <i
+              data-lucide="monitor-dot"
+              class="w-10 h-10 mx-auto text-nexus-primary mb-3"
+            ></i>
+            <h4 class="text-lg font-semibold mb-1">Dedicated Workspace</h4>
+            <p class="text-sm text-gray-500">
+              A quiet, designated area for working remotely.
+            </p>
+          </div>
+
+          <div
+            class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1"
+          >
+            <i
+              data-lucide="parking-square"
+              class="w-10 h-10 mx-auto text-nexus-primary mb-3"
+            ></i>
+            <h4 class="text-lg font-semibold mb-1">On-Premises Parking</h4>
+            <p class="text-sm text-gray-500">
+              Secure parking for your vehicle.
+            </p>
+          </div>
+
+          <div
+            class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1"
+          >
+            <i
+              data-lucide="paw-print"
+              class="w-10 h-10 mx-auto text-nexus-primary mb-3"
+            ></i>
+            <h4 class="text-lg font-semibold mb-1">Pets Welcome</h4>
+            <p class="text-sm text-gray-500">
+              Bring your furry friends along for the beach trip.
+            </p>
+          </div>
+
+          <div
+            class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1"
+          >
+            <i
+              data-lucide="washing-machine"
+              class="w-10 h-10 mx-auto text-nexus-primary mb-3"
+            ></i>
+            <h4 class="text-lg font-semibold mb-1">Washing Machine</h4>
+            <p class="text-sm text-gray-500">
+              Laundry facilities available for guests use.
+            </p>
+          </div>
+
+          <div
+            class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1"
+          >
+            <i
+              data-lucide="fan"
+              class="w-10 h-10 mx-auto text-nexus-primary mb-3"
+            ></i>
+            <h4 class="text-lg font-semibold mb-1">Air Conditioning</h4>
+            <p class="text-sm text-gray-500">
+              Climate controlled rooms for maximum comfort.
+            </p>
+          </div>
+
+          <div
+            class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1"
+          >
+            <i
+              data-lucide="flame"
+              class="w-10 h-10 mx-auto text-nexus-primary mb-3"
+            ></i>
+            <h4 class="text-lg font-semibold mb-1">Outdoor Firepit</h4>
+            <p class="text-sm text-gray-500">
+              Enjoy cozy evenings by the fire under the stars.
+            </p>
+          </div>
+
+          <div
+            class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1"
+          >
+            <i
+              data-lucide="cloud-rain"
+              class="w-10 h-10 mx-auto text-nexus-primary mb-3"
+            ></i>
+            <h4 class="text-lg font-semibold mb-1">Rain Dance Area</h4>
+            <p class="text-sm text-gray-500">
+              Dedicated space for fun water showers and group dancing.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="gallery" class="section-padding">
+      <div class="container mx-auto text-center">
+        <span
+          class="text-nexus-secondary text-sm font-semibold uppercase tracking-widest"
+          >Visual Tour</span
+        >
+        <h2 class="text-4xl font-bold mt-2 mb-12">A Glimpse of Paradise</h2>
+
+        <div
+          class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"
+        >
+          <div class="rounded-xl overflow-hidden shadow-md aspect-square">
+            <img
+              src="Bedroom2.jpg"
+              alt="Main Unit Bedroom 1 with Wooden Ceilings"
+              class="w-full h-full object-cover transition duration-500 hover:scale-110 cursor-pointer"
+              onerror="this.src='https://placehold.co/600x600/1B4965/FFFFFF?text=Image+Error+B2'"
+            />
+          </div>
+          <div class="rounded-xl overflow-hidden shadow-md aspect-square">
+            <img
+              src="Bedroom 3.jpg"
+              alt="Main Unit Bedroom 2 Interior"
+              class="w-full h-full object-cover transition duration-500 hover:scale-110 cursor-pointer"
+              onerror="this.src='https://placehold.co/600x600/1B4965/FFFFFF?text=Image+Error+B3'"
+            />
+          </div>
+          <div class="rounded-xl overflow-hidden shadow-md aspect-square">
+            <img
+              src="Workspace.jpg"
+              alt="Dedicated Shared Workspace Table"
+              class="w-full h-full object-cover transition duration-500 hover:scale-110 cursor-pointer"
+              onerror="this.src='https://placehold.co/600x600/1B4965/FFFFFF?text=Image+Error+W'"
+            />
+          </div>
+          <div class="rounded-xl overflow-hidden shadow-md aspect-square">
+            <img
+              src="Beach.jpg"
+              alt="Common Area with Sea View Window"
+              class="w-full h-full object-cover transition duration-500 hover:scale-110 cursor-pointer"
+              onerror="this.src='https://placehold.co/600x600/1B4965/FFFFFF?text=Image+Error+R'"
+            />
+          </div>
+
+          <div
+            class="rounded-xl overflow-hidden shadow-md aspect-square col-span-2"
+          >
+            <img
+              src="Homestay.jpg"
+              alt="Nexus Beach Homestay Complete View"
+              class="w-full h-full object-cover transition duration-500 hover:scale-105 cursor-pointer"
+              onerror="this.src='https://placehold.co/1200x600/1B4965/FFFFFF?text=Image+Error+H'"
+            />
+          </div>
+          <div
+            class="rounded-xl overflow-hidden shadow-md aspect-square col-span-2"
+          >
+            <img
+              src="Seaside.jpg"
+              alt="Nexus Beach Homestay Complete View"
+              class="w-full h-full object-cover transition duration-500 hover:scale-105 cursor-pointer"
+              onerror="this.src='https://placehold.co/1200x600/1B4965/FFFFFF?text=Image+Error+H'"
+            />
+          </div>
+          <div class="rounded-xl overflow-hidden shadow-md aspect-square">
+            <img
+              src="Cottage.jpg"
+              alt="Exclusive Coastal Cottage Exterior View"
+              class="w-full h-full object-cover transition duration-500 hover:scale-110 cursor-pointer"
+              onerror="this.src='https://placehold.co/600x600/1B4965/FFFFFF?text=Image+Error+C'"
+            />
+          </div>
+          <div class="rounded-xl overflow-hidden shadow-md aspect-square">
+            <img
+              src="Bedroom.jpg"
+              alt="Cottage Bedroom Interior and Beach View"
+              class="w-full h-full object-cover transition duration-500 hover:scale-110 cursor-pointer"
+              onerror="this.src='https://placehold.co/600x600/1B4965/FFFFFF?text=Image+Error+B'"
+            />
+          </div>
+          <div class="rounded-xl overflow-hidden shadow-md aspect-square">
+            <img
+              src="Dinning area.jpg"
+              alt="Cottage Outdoor Dining and Seating Area"
+              class="w-full h-full object-cover transition duration-500 hover:scale-110 cursor-pointer"
+              onerror="this.src='https://placehold.co/600x600/1B4965/FFFFFF?text=Image+Error+D'"
+            />
+          </div>
+
+          <div class="rounded-xl overflow-hidden shadow-md aspect-square">
+            <img
+              src="Sea view.jpg"
+              alt="Beach Hammock and Sea View at Sunset"
+              class="w-full h-full object-cover transition duration-500 hover:scale-110 cursor-pointer"
+              onerror="this.src='https://placehold.co/600x600/1B4965/FFFFFF?text=Image+Error+S1'"
+            />
+          </div>
+          <div class="rounded-xl overflow-hidden shadow-md aspect-square">
+            <img
+              src="Beach.jpg"
+              alt="Beach Hammock and Sea View at Sunset"
+              class="w-full h-full object-cover transition duration-500 hover:scale-110 cursor-pointer"
+              onerror="this.src='https://placehold.co/600x600/1B4965/FFFFFF?text=Image+Error+S1'"
+            />
+          </div>
+          <div class="rounded-xl overflow-hidden shadow-md aspect-square">
+            <img
+              src="Lights.jpg"
+              alt="Beach Hammock and Sea View at Sunset"
+              class="w-full h-full object-cover transition duration-500 hover:scale-110 cursor-pointer"
+              onerror="this.src='https://placehold.co/600x600/1B4965/FFFFFF?text=Image+Error+S1'"
+            />
+          </div>
+          <div class="rounded-xl overflow-hidden shadow-md aspect-square">
+            <img
+              src="Swing.jpg"
+              alt="Beach Hammock and Sea View at Sunset"
+              class="w-full h-full object-cover transition duration-500 hover:scale-110 cursor-pointer"
+              onerror="this.src='https://placehold.co/600x600/1B4965/FFFFFF?text=Image+Error+S1'"
+            />
+          </div>
+          <div class="rounded-xl overflow-hidden shadow-md aspect-square">
+            <img
+              src="Swings.jpg"
+              alt="Beach Hammock and Sea View at Sunset"
+              class="w-full h-full object-cover transition duration-500 hover:scale-110 cursor-pointer"
+              onerror="this.src='https://placehold.co/600x600/1B4965/FFFFFF?text=Image+Error+S1'"
+            />
+          </div>
+          <div class="rounded-xl overflow-hidden shadow-md aspect-square">
+            <img
+              src="Rain Dance.jpg"
+              alt="Beach Hammock and Sea View at Sunset"
+              class="w-full h-full object-cover transition duration-500 hover:scale-110 cursor-pointer"
+              onerror="this.src='https://placehold.co/600x600/1B4965/FFFFFF?text=Image+Error+S1'"
+            />
+          </div>
+          <div class="rounded-xl overflow-hidden shadow-md aspect-square">
+            <img
+              src="Night View.jpg"
+              alt="Palm Trees on the Beach at Night"
+              class="w-full h-full object-cover transition duration-500 hover:scale-110 cursor-pointer"
+              onerror="this.src='https://placehold.co/600x600/1B4965/FFFFFF?text=Image+Error+I1'"
+            />
+          </div>
+          <div class="rounded-xl overflow-hidden shadow-md aspect-square">
+            <img
+              src="Seating area.jpg"
+              alt="Illuminated Palm Tree Pathway at Dusk"
+              class="w-full h-full object-cover transition duration-500 hover:scale-110 cursor-pointer"
+              onerror="this.src='https://placehold.co/600x600/1B4965/FFFFFF?text=Image+Error+S2'"
+            />
+          </div>
+          <div class="rounded-xl overflow-hidden shadow-md aspect-square">
+            <img
+              src="Night light.jpg"
+              alt="Homestay Buildings and Pathway Lit at Night"
+              class="w-full h-full object-cover transition duration-500 hover:scale-110 cursor-pointer"
+              onerror="this.src='https://placehold.co/600x600/1B4965/FFFFFF?text=Image+Error+I2'"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="location" class="section-padding bg-textured-sand">
+      <div class="container mx-auto text-center">
+        <span
+          class="text-nexus-primary text-sm font-semibold uppercase tracking-widest"
+          >How to Find Us</span
+        >
+        <h2 class="text-4xl font-bold mt-2 mb-8">
+          Visit Our Tranquil Location
+        </h2>
+
+        <p class="text-lg text-gray-700 mb-6 max-w-2xl mx-auto">
+          We are nestled right on Polipu Beach, just a short drive from the
+          historic Kaup Lighthouse. Enjoy the serene drive along the Udupi
+          coast.
+        </p>
+
+        <div class="rounded-xl overflow-hidden shadow-2xl h-80 w-full mb-8">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11978.75052994444!2d74.7208882!3d13.267866399999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbca9f201738725%3A0x6a05342a78f21919!2sKaup%20Beach!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+            width="100%"
+            height="100%"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Google Maps Location of Nexus Beach Homestay"
+          ></iframe>
+        </div>
+
+        <p class="text-base text-nexus-text-dark font-medium">
+          Address: Nexus Beach House, Bhavani Niketan, Fisheries Road,
+          Uliyaragoli, Polipu, Kapu, Udupi.
+        </p>
+      </div>
+    </section>
+
+    <footer
+      id="contact"
+      class="bg-nexus-primary/95 text-white section-padding pt-12 pb-6"
+    >
+      <div class="container mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+          <div>
+            <h4 class="text-2xl font-extrabold mb-4 text-nexus-secondary">
+              Nexus Homestay
+            </h4>
+            <p class="text-sm text-gray-300 mb-2">
+              The ultimate beach getaway in Udupi.
+            </p>
+            <p class="text-sm text-gray-300">
+              <i data-lucide="phone" class="w-4 h-4 mr-2 inline-block"></i>
+              +91-8296986379
+            </p>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#about"
+                  class="text-gray-300 hover:text-nexus-secondary"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#rooms"
+                  class="text-gray-300 hover:text-nexus-secondary"
+                  >Rooms</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#amenities"
+                  class="text-gray-300 hover:text-nexus-secondary"
+                  >Amenities</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#gallery"
+                  class="text-gray-300 hover:text-nexus-secondary"
+                  >Gallery</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#location"
+                  class="text-gray-300 hover:text-nexus-secondary"
+                  >Location</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-span-2 md:col-span-1">
+            <h4 class="text-lg font-semibold mb-4">Ready to Book?</h4>
+            <button
+              onclick="openWhatsAppBooking()"
+              class="w-full flex justify-center items-center px-4 py-3 text-base font-bold rounded-full shadow-lg text-nexus-primary bg-nexus-secondary hover:bg-white transition duration-300 transform hover:scale-[1.02]"
+            >
+              <i data-lucide="whatsapp" class="w-5 h-5 mr-2"></i> Book via
+              WhatsApp
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-gray-700/50 mt-12 pt-8 text-center text-sm text-gray-400"
+        >
+          &copy; <span id="currentYear"></span> All rights reserved. |
+          <span class="text-nexus-secondary">Nexus Beach Homestay</span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      window.onload = function () {
+        lucide.createIcons();
+        document.getElementById("currentYear").textContent =
+          new Date().getFullYear();
+      };
+    </script>
+  </body>
+</html>
